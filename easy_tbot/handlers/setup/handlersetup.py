@@ -9,7 +9,7 @@ class HandlerSetup(ABC):
 
     def __init__(self, bot: TeleBot):
         """
-        This method must be called in other class than HandlerSetup, initialize that class
+        This method must be called in other class different than HandlerSetup and should be initialized on that class
         :param bot: Bot, telegram bot
         """
         self.__bot = bot
@@ -18,22 +18,22 @@ class HandlerSetup(ABC):
     @property
     def is_setup(self) -> bool:
         """
-        Get if  handler has being setup inside a bot
-        :return: If  handler has being setup inside a bot
+        Checks if a handler has been set inside a bot before
+        :return: If handler has been set inside a bot before
         """
         return self.__is_set_up
 
     @property
     def bot(self) -> TeleBot:
         """
-        Get the bot using this handler
+        Gets the bot using this handler
         :return: Bot, inner bot
         """
         return self.__bot
 
     def setup(self):
         """
-        Setup this handler in the proper bot
+        Sets this handler in the proper bot
         :return: None
         """
         self.__is_set_up = True
