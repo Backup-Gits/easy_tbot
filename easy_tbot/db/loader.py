@@ -10,8 +10,8 @@ import inspect
 @Cached
 def load_dbengine():
     """
-    Get the database engine for project.
-    :return: Base (db engine clase of sqlalchemy package).
+    Gets the database engine for the project.
+    :return: Base (db engine class of sqlalchemy package).
     """
     settings = load_settings()
     return create_engine(settings.DB)
@@ -20,7 +20,7 @@ def load_dbengine():
 @Cached
 def get_model():
     """
-    Get the declarative base for an ORM based on a Class System.
+    Gets the declarative base for an ORM based on a Class System.
     :return: DeclarativeMeta.
     """
     return declarative_base()
@@ -29,7 +29,7 @@ def get_model():
 @Cached
 def get_session_class():
     """
-    Construct a new class type for definig sessions in the data base engine.
+    Constructs a new class type for defining sessions in the data base engine.
     :return: New class for definig sessions.
     """
     return sessionmaker(load_dbengine())
@@ -37,8 +37,8 @@ def get_session_class():
 
 def migrate():
     """
-    Write the propers tables in the database, somthimes generate a database (sqlite).
-    :return: All subcriptions models of the database, the datatables in a raw format.
+    Write the proper tables in the database, sometimes it generates a database (sqlite).
+    :return: All subcriptions models of the database, the datatables in raw format.
     """
     subcriptions = []
     model = get_model()
