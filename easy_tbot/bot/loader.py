@@ -12,7 +12,7 @@ logger = get_logger()
 
 class Loader:
     """
-    A factory kind class, instances work as function that load some base_class childs from a bot section
+    A factory kind class, instances works as functions that load some base_class childs from a bot section
     """
 
     def __init__(self, base_class):
@@ -41,10 +41,10 @@ class Loader:
 
 def easy_subscribe(module, cast_type, bot):
     """
-    Subscribe in a bot the class of the passed module childs by inheritance of cast_type.
+    Subscribes in a bot the class of the passed module childs by inheritance of cast_type.
     :param module: Module to search for classes.
     :param cast_type: Base class of classes to search.
-    :param bot: Bot for do subscriptions.
+    :param bot: Bot for making subscriptions.
     :return: None.
     """
     lmodule = import_module(module)
