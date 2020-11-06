@@ -1,5 +1,5 @@
 # easy_tbot
-Mini framework  for data base and other usefull stuff integration with Telegram bot api
+Mini framework for database and other usefull stuff integration with Telegram bot api
 ## Instalation
 ````commandline
 pip install easy-tbot
@@ -14,30 +14,30 @@ Here we hold all framework configuration stuff.
 
 | Variable name | Wath they do |
 | ------------- | ------------- |
-| BASEDIR  | Store the project direction  |
-| SECTIONS | Store wath sections must be loaded  |
+| BASEDIR  | Stores the project direction  |
+| SECTIONS | Stores what sections must be loaded with |
 | DB | sqlalchemy connection string |
-| TOKEN | The token provided by Telegram botfather for your bot |
+| TOKEN | The token provided by Telegram botfather's bot for using your own bot |
 | PROXY | The proxy for connect with Telegram (MTPROTO not allowed ...!!yet!!) |
-| DEBUG | Control if framework can display debug information |
+| DEBUG | Controls if the framework can display debug's information |
 ### The botmanager.py file 
-A file that store a entry point for our full bot. Three commands base are allowed and others can be added.
+A file that stores an entry point for our full bot. There are 3 basic commands allowed and others can be added.
 
-1. To create a section
+1. Create a section
    - ```commandline  
      python botmanager.py createsection <name> 
      ```
-2. To setup the data base
+2. Set up the data base
    - ```commandline  
      python botmanager.py migrate
      ```
-3. To run the bot
+3. Run the bot
    - ```commandline  
      python botmanager.py run
      ```
 
 ### Sections
-Sections are logic separated part of our bot. They are formed by handler, inlines, middlewares, models, and shells explained below.
+Sections are logicall-separated parts of our bot. They are formed by handler, inlines, middlewares, models, and shells explained below.
 
 - Section
   - handlers.py
@@ -47,9 +47,9 @@ Sections are logic separated part of our bot. They are formed by handler, inline
   - shells.py
   
 #### Handlers
-Represented by handlers.py file. Store a set of handlers that inherit from All, Command, Regex, Function classes stored in
+Represented by handlers.py file. Stores a set of handlers that inherit from All, Command, Regex, Function classes stored in
 easy_tbot.handlers.handler
-A example for reply the /start command
+An example of a reply to the /start command
 ```python
 
 from easy_tbot.handlers.handler import Command,Message
@@ -61,9 +61,9 @@ class StartCommand(Command):
         self.bot.reply_to(msg, 'Hello world!!!')
 ```
 #### Inlines
-Represented by inlines.py file. Store a set of handlers that inherit from InlineHandler class stored in
+Represented by inlines.py file. Stores a set of handlers that inherit from InlineHandler class stored in
 easy_tbot.handlers.inline
-A example for reply the 'hello' inline
+An example of a reply made to the 'hello' inline button
 ```python
 from easy_tbot.handlers.inline import InlineHandler,InlineQuery
 
@@ -75,9 +75,9 @@ class HelloInline(InlineHandler):
             self.bot.send_message(query.id, 'Hello to you')
 ```
 #### Middlewares
-Represented by middlewares.py file. Store a set of handlers that inherit from Middlware class stored in
+Represented by middlewares.py file. Stores a set of handlers that inherit from Middlware class stored in
 easy_tbot.handlers.middleware
-A example for edit message info
+An example of how to edit a message's info
 ```python
 from easy_tbot.handlers.middleware import Middleware,Message,TeleBot
 from .models import User
@@ -89,9 +89,9 @@ class HelloMiddleware(Middleware):
         msg.register = User.get_user_from_db(msg.from_user.id) is not None
 ```
 #### Models
-Represented by models.py file. Store a set of ORM models that inherit from Model class stored in
+Represented by models.py file. Stores a set of ORM models that inherit from Model class stored in
 easy_tbot.db.models
-A example for user model
+An example off a user model
 ```python
 from easy_tbot.db.models import Model, session_scope
 from sqlalchemy import Column, String, Integer, Boolean
@@ -112,9 +112,9 @@ class User(Model):
 
 ```
 #### Shells
-Represented by shells.py file. Store a set of commands that inherit from ShellCommand class stored in
+Represented by shells.py file. Stores a set of commands that inherit from ShellCommand class stored in
 easy_tbot.shell.shell
-A example for edit message info
+An example of how to edit a message's info
 ```python
 from easy_tbot.shell.shell import  ShellCommand
 
@@ -123,14 +123,14 @@ class HelloCommand(ShellCommand):
     def do(self, *args, **kwargs):
         print('Hello from terminal!')
 ```
-This command can be invoqued now with botmanager.py
+This command can be used now with botmanager.py
 ```commandline
 python botmanager.py hello
 ```
 ## To do stuff
-They are the most demanded stuff for our mini framework, we want do all  this.
+These are the most demanded stuff for our mini framework and we want to do all of this:
 
-- [ ] Not only pyTelegramBotAPI as backend , telethon to
+- [ ] Not only pyTelegramBotAPI as backend but telethon too
 - [x] Support for commobly used data bases
 - [ ] Support for mtproto proxy protocol
 - [ ] A session system
