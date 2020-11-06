@@ -7,7 +7,7 @@ import logging
 
 class Bot(TeleBot):
     """
-    Main class of api. Representation of a Telegram bot.
+    API's main class. Representation of a Telegram's bot.
     """
     def __init__(self, *args, **kwargs):
         """
@@ -27,7 +27,7 @@ class Bot(TeleBot):
     @property
     def proxy(self):
         """
-        Get the proxy info.
+        Gets the proxy info.
         :return: dict{'kind':'url'} where kind can be http or https or socks.
         """
         return apihelper.proxy
@@ -35,7 +35,7 @@ class Bot(TeleBot):
     @proxy.setter
     def proxy(self, value):
         """
-        Set the proxy info.
+        Sets the proxy info.
         :param value: Proxy in format dict{'kind':'url'} where kind can be http or https or socks.
         """
         apihelper.proxy = value
@@ -43,8 +43,8 @@ class Bot(TeleBot):
     @with_triggers
     def subscribe(self, k):
         """
-        Subscribe a class k as a handler or middleware in the bot.
-        :param k: Any handler class that extend of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
+        Subscribes a class k as a handler or middleware in the bot.
+        :param k: Any handler class that extends of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
         :return: Instance of k class.
         """
         if not issubclass(k, handlersetup.HandlerSetup):
@@ -55,8 +55,8 @@ class Bot(TeleBot):
 
     def subscribe_all(self, *args):
         """
-        Subscribe a tuple of class as a handler's or middleware's in the bot.
-        :param args: Tuple of any handler class that extend of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
+        Subscribes a tuple of class as a handler or middleware in the bot.
+        :param args: Tuple of any handler class that extends of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
         :return: A generator of instantiated subscriptions of args.
         """
         for x in args:
@@ -65,7 +65,7 @@ class Bot(TeleBot):
     @with_triggers
     def setup(self):
         """
-        Setup every class loaded in the bot, this is the real magic.
+        Sets every class loaded in the bot, this is the real magic.
         :return: None.
         """
         for x in self.__subscriptions:
