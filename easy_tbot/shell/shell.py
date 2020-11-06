@@ -5,7 +5,7 @@ from easy_tbot.utils import with_triggers
 
 class ShellCommand(ABC):
     """
-    Represent a command used in the OS shell
+    Represents a command used in the OS shell
     """
     name: str
     extra: dict
@@ -13,7 +13,7 @@ class ShellCommand(ABC):
     @abstractmethod
     def do(self, *args, **kwargs):
         """
-        Wath the command do
+        What does this the command do
         :param args:
         :param kwargs:
         :return:
@@ -25,7 +25,7 @@ class ShellCommand(ABC):
 
     def post_insert(self, *args, **kwargs):
         """
-        This method is invoked after the command is inserted in a shelll handler
+        This method is invoked after the command is inserted in a shell handler
         :param args:
         :param kwargs:
         :return:None
@@ -35,7 +35,7 @@ class ShellCommand(ABC):
 
 class ShellHandler:
     """
-    Handler all commands and stuff of every base or created section in the bot
+    Handles all commands and stuff of every base or created section in the bot
     """
     def __init__(self):
         self.__argparser = argparse.ArgumentParser()
@@ -45,7 +45,7 @@ class ShellHandler:
     @with_triggers
     def add_command(self, command: ShellCommand):
         """
-        Add a command to the handler
+        Adds a command to the handler
         :param command: Command to add
         :return: None
         """
@@ -56,7 +56,7 @@ class ShellHandler:
 
     def add_commands(self, *args):
         """
-        Add a command  set to the handler
+        Adds a command  set to the handler
         :param args:
         :return:
         """
