@@ -8,7 +8,7 @@ from .utils import Cached
 @Cached
 def load_settings():
     """
-    Get the settings of the bot app
+    Gets the settings of the bot app
     :return: settings module
     """
     return import_module(os.environ.get('BOT_SETTING_MODULE'))
@@ -17,7 +17,7 @@ def load_settings():
 @Cached
 def get_logger():
     """
-    Get a logger for the framework
+    Gets a logger for the framework
     :return: logger
     """
     settings = load_settings()
@@ -37,7 +37,7 @@ def get_logger():
 
 def for_app_do(func: Callable):
     """
-    A helpfull method that iterate for every app and aply a function to them
+    A helpfull method that iterates for every app and applies a function to them
     :param func: Funtion to aply
     :return: None
     """
