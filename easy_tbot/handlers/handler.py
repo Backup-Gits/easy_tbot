@@ -12,7 +12,7 @@ class BaseHandler(HandlerSetup, ABC):
     @abstractmethod
     def handle(self, msg: Message):
         """
-        Handle some incoming message.
+        Handles some incoming message.
         :param msg: Message to handle.
         :return: None
         """
@@ -21,7 +21,7 @@ class BaseHandler(HandlerSetup, ABC):
 
 class All(BaseHandler, ABC):
     """
-    Handle all incoming mesagges
+    Handles all incoming mesagges
     """
     def setup(self):
         self.bot.message_handler(func=lambda x: True)(self.handle)
@@ -30,7 +30,7 @@ class All(BaseHandler, ABC):
 
 class Command(BaseHandler, ABC):
     """
-     Handle  incoming mesagges asociated with a set of commands
+     Handles incoming mesagges asociated with a set of commands
      """
     commands: typing.List[str]
 
@@ -41,7 +41,7 @@ class Command(BaseHandler, ABC):
 
 class Regex(BaseHandler, ABC):
     """
-     Handle  incoming mesagges asociated with a regular expresion
+     Handles incoming mesagges asociated with a regular expresion
      """
     regex: str
 
@@ -52,12 +52,12 @@ class Regex(BaseHandler, ABC):
 
 class Function(BaseHandler, ABC):
     """
-     Handle all incoming mesagges that pass a filter function
+     Handles all incoming mesagges that pass through a filter function
      """
     @abstractmethod
     def filter(self, msg: Message) -> bool:
         """
-        Filter a message and return trun if this pass the test or false if not
+        Filters a message and returns true if it has passed the test or false if it has not
         :param msg: Message to filter
         :return: True or false
         """
