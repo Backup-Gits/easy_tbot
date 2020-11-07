@@ -12,7 +12,7 @@ pip install easy-tbot
 ### The settings.py file
 Here we hold all framework configuration stuff.
 
-| varibale name | Wath they do |
+| Variable name | Wath they do |
 | ------------- | ------------- |
 | BASEDIR  | Store the project direction  |
 | SECTIONS | Store wath sections must be loaded  |
@@ -37,10 +37,9 @@ A file that store a entry point for our full bot. Three commands base are allowe
      ```
 
 ### Sections
-Sections are logic separed part of our bot. They are formed by handler, inlines, middlewares, models, and shells explained below.
+Sections are logic separated part of our bot. They are formed by handler, inlines, middlewares, models, and shells explained below.
 
 - Section
-  _ __init__.py
   - handlers.py
   - inlines.py
   - middlewares.py
