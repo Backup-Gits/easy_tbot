@@ -14,7 +14,7 @@ import os
 
 class RunShellCommand(ShellCommand):
     """
-    Command that start the bot
+    Command that starts the bot
     """
     name = 'run'
     extra = {
@@ -34,7 +34,7 @@ class RunShellCommand(ShellCommand):
 
 class MigrateShellCommand(ShellCommand):
     """
-    Command that migrate all models in the database
+    Command that migrates all models in the database
     """
     name = 'migrate'
     extra = {
@@ -74,7 +74,7 @@ class CreateApp(ShellCommand):
             section = kwargs['name']
         full_section_name = os.path.join(os.getcwd(), section)
         if os.path.exists(full_section_name):
-            return 'A folder with this name already exist'
+            return 'A folder with this name already exists'
         elif section is not None:
             os.mkdir(full_section_name)
             for fal in self.files_and_lines:
@@ -90,7 +90,7 @@ class CreateApp(ShellCommand):
 @Cached
 def load_shell():
     """
-    Load a return a ShellHandler with all shell commands in the bot project
+    Loads and returns a ShellHandler with all shell commands in the bot project
     :return: ShellHandler
     """
     shell = ShellHandler()
