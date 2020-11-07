@@ -9,5 +9,5 @@ setup(
     license='GNU LGPLv3',
     author='Jesús Enrique Fuentes González',
     author_email='jesusefg12@gmail.com',
-    description='Framework  for data base and other usefull stuff with Telegram bot api'
+    description='Framework  for data base and other usefull stuff integration with Telegram bot api'
 )
