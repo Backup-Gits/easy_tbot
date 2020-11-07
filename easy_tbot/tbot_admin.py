@@ -16,6 +16,7 @@ DB = {
 
 TOKEN = ''
 PROXY = {}
+DEBUG = True
 """),
                      ('botmanager.py', """import os
 from bot_framework.shell.loader import handle_shell_input

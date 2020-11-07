@@ -21,7 +21,8 @@ def get_logger():
     :return: logger
     """
     logger = logging.getLogger('BOT')
-    logger.setLevel(logging.DEBUG)
+    if load_settings().DEBUG:
+        logger.setLevel(logging.DEBUG)
     ch = logging.StreamHandler()
     fm = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d %(threadName)s) %(levelname)s - %(name)s: "%('
                            'message)s"')

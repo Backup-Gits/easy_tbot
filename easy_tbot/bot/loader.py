@@ -14,6 +14,7 @@ class Loader:
     """
     A factory kind class, instances work as function that load some base_class childs from a bot section
     """
+
     def __init__(self, base_class):
         self.__bc = base_class
 
@@ -57,7 +58,7 @@ def load_bot() -> Bot:
     :return: Bot
     """
     settings = load_settings()
-    bot: Bot = Bot(settings.TOKEN)
+    bot: Bot = Bot(settings.TOKEN, debug=settings.DEBUG)
     if settings.PROXY is not None and len(settings.PROXY) > 0:
         bot.proxy = settings.PROXY
     get_logger().info('Successfully created bot')

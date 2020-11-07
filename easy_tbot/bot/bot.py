@@ -15,7 +15,8 @@ class Bot(TeleBot):
         :param kwargs:
         """
         super(Bot, self).__init__(*args, **kwargs)
-        logger.setLevel(logging.DEBUG)
+        if 'debug' in kwargs and kwargs['debug']:
+            logger.setLevel(logging.DEBUG)
         self.__subscriptions = []
 
     @property
