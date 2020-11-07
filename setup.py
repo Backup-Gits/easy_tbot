@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name='easy_tebot',
+    name='easy_tbot',
     version='1.0',
-    packages=['easy_tebot', 'easy_tebot.db', 'easy_tebot.bot', 'easy_tebot.shell', 'easy_tebot.handlers',
-              'easy_tebot.handlers.setup'],
+    packages=['easy_tbot', 'easy_tbot.db', 'easy_tbot.bot', 'easy_tbot.shell', 'easy_tbot.handlers',
+              'easy_tbot.handlers.setup'],
     url='',
     license='GNU LGPLv3',
     author='Jesús Enrique Fuentes González',

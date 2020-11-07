@@ -1,6 +1,6 @@
 from telebot import TeleBot
-from easy_tebot.handlers.setup import handlersetup
-from easy_tebot.utils import with_triggers
+from easy_tbot.handlers.setup import handlersetup
+from easy_tbot.utils import with_triggers
 from telebot import apihelper, logger
 import logging
 
@@ -38,7 +38,7 @@ class Bot(TeleBot):
     def subscribe(self, k):
         """
         Subscribe a class k as a handler or middleware in the bot.
-        :param k: Any handler class that extend of 'easy_tebot.handlers.setup.handlersetup.HandlerSetup'.
+        :param k: Any handler class that extend of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
         :return: Instance of k class.
         """
         if not issubclass(k, handlersetup.HandlerSetup):
@@ -50,7 +50,7 @@ class Bot(TeleBot):
     def subscribe_all(self, *args):
         """
         Subscribe a tuple of class as a handler's or middleware's in the bot.
-        :param args: Tuple of any handler class that extend of 'easy_tebot.handlers.setup.handlersetup.HandlerSetup'.
+        :param args: Tuple of any handler class that extend of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
         :return: A generator of instantiated subscriptions of args.
         """
         for x in args:

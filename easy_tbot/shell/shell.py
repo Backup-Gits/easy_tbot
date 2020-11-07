@@ -1,6 +1,6 @@
 import argparse
 from abc import ABC, abstractmethod
-from easy_tebot.utils import with_triggers
+from easy_tbot.utils import with_triggers
 
 
 class ShellCommand(ABC):

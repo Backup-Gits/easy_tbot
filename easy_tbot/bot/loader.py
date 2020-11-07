@@ -1,9 +1,9 @@
 import inspect
 from importlib import import_module
 
-from easy_tebot.utils import Cached
-from easy_tebot.loader import load_settings, get_logger, for_app_do
-from easy_tebot.handlers import middleware, handler, inline
+from easy_tbot.utils import Cached
+from easy_tbot.loader import load_settings, get_logger, for_app_do
+from easy_tbot.handlers import middleware, handler, inline
 
 from .bot import Bot
 

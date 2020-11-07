@@ -1,10 +1,10 @@
 from .shell import ShellHandler, ShellCommand
 
-from easy_tebot.bot.loader import load_bot
-from easy_tebot.db.loader import migrate
-from easy_tebot.loader import for_app_do, get_logger
+from easy_tbot.bot.loader import load_bot
+from easy_tbot.db.loader import migrate
+from easy_tbot.loader import for_app_do, get_logger
 
-from easy_tebot.utils import Cached
+from easy_tbot.utils import Cached
 
 from importlib import import_module
 import inspect

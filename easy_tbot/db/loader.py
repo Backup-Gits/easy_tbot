@@ -1,5 +1,5 @@
-from easy_tebot.utils import Cached
-from easy_tebot.loader import load_settings, for_app_do, get_logger
+from easy_tbot.utils import Cached
+from easy_tbot.loader import load_settings, for_app_do, get_logger
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker

@@ -1,4 +1,4 @@
-from easy_tebot.handlers.setup.handlersetup import HandlerSetup
+from easy_tbot.handlers.setup.handlersetup import HandlerSetup
 from abc import ABC, abstractmethod
 from telebot.types import InlineQuery
 
