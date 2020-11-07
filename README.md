@@ -139,3 +139,4 @@ They are the most demanded stuff for our mini framework, we want do all  this.
 - [ ] A permission  system
 - [ ] A markup on the fly system
 - [ ] Support for webhooks
+- [ ] Unit Tests 👀
