@@ -47,4 +47,6 @@ def create_project(project_name):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('name', help='Project name')
-    print(parser.parse_args())
+    args = parser.parse_args()
+    if 'name' in vars(args):
+        create_project(args.name)
