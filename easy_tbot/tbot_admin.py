@@ -9,10 +9,7 @@ BASEDIR = os.path.dirname(__file__)
 SECTIONS = []
 GLOBALS = []
 
-DB = {
-    'engine': 'sqlite',
-    'name': '/sqlite.db',
-}
+DB = ''
 
 TOKEN = ''
 PROXY = {}
