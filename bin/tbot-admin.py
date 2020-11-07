@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 
 files_and_content = [('settings.py', """import os
