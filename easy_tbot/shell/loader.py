@@ -49,7 +49,7 @@ class MigrateShellCommand(ShellCommand):
 
 
 class CreateApp(ShellCommand):
-    name = 'createasection'
+    name = 'createsection'
     extra = {
         'help': 'Create a well formed section directory'
     }
