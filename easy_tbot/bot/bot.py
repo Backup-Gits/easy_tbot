@@ -14,8 +14,13 @@ class Bot(TeleBot):
         :param args: Must have at least a token.
         :param kwargs:
         """
-        super(Bot, self).__init__(*args, **kwargs)
+        debug = False
         if 'debug' in kwargs and kwargs['debug']:
+            debug = kwargs['debug']
+            del kwargs['debug']
+
+        super(Bot, self).__init__(*args, **kwargs)
+        if debug:
             logger.setLevel(logging.DEBUG)
         self.__subscriptions = []
 
