@@ -67,7 +67,7 @@ class CreateApp(ShellCommand):
                         '# Code your shell command here')]
 
     def do(self, *args, **kwargs):
-        section: str = None
+        section = None
         if len(args) == 1:
             section = args[0]
         elif 'name' in kwargs:
