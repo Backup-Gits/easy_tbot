@@ -7,7 +7,9 @@ from easy_tbot.loader import for_app_do, get_logger
 from easy_tbot.utils import Cached
 
 from importlib import import_module
+import os
 import inspect
+from argparse import ArgumentParser
 
 
 class RunShellCommand(ShellCommand):
@@ -46,6 +48,45 @@ class MigrateShellCommand(ShellCommand):
         pass
 
 
+class CreateApp(ShellCommand):
+    name = 'createasection'
+    extra = {
+        'help': 'Create a well formed section directory'
+    }
+    files_and_lines = [('__init__.py',),
+                       ('handlers.py', 'from bot_framework.handlers.handler import Command', '',
+                        '# Code your handler system here'),
+                       ('inlines.py', 'from bot_framework.handlers.inline import InlineHandler', '',
+                        '# Code your inline '
+                        'system here'),
+                       ('middlewares.py', 'from bot_framework.handlers.middleware import Middleware', '',
+                        '# Code your middleware system  here'),
+                       ('models.py', 'from bot_framework.db.models import Model', 'from sqlalchemy import Column',
+                        '', "# Code your model's here"),
+                       ('shells.py', 'from bot_framework.shell.shell import ShellCommand', '',
+                        '# Code your shell command here')]
+
+    def do(self, *args, **kwargs):
+        section: str = None
+        if len(args) == 1:
+            section = args[0]
+        elif 'name' in kwargs:
+            section = kwargs['name']
+        full_section_name = os.path.join(os.getcwd(), section)
+        if os.path.exists(full_section_name):
+            return 'A folder with this name already exist'
+        elif section is not None:
+            os.mkdir(full_section_name)
+            for fal in self.files_and_lines:
+                file = fal[0]
+                lines = fal[1:] if len(fal) > 1 else []
+                with open(os.path.join(full_section_name, file), 'w') as fs:
+                    fs.writelines(lines)
+
+    def post_insert(self, parser: ArgumentParser):
+        parser.add_argument('name', help='Name for the section folder')
+
+
 @Cached
 def load_shell():
     """
@@ -54,7 +95,7 @@ def load_shell():
     """
     shell = ShellHandler()
     shell.add_command.post_func = lambda c: get_logger().info(f'Successfully created {c.name} command')
-    shell.add_commands(MigrateShellCommand(), RunShellCommand())
+    shell.add_commands(MigrateShellCommand(), RunShellCommand(), CreateApp())
 
     def handle_app(app):
         module = import_module(f'{app}.shells')

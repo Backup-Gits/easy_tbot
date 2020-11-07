@@ -70,7 +70,9 @@ class ShellHandler:
         :return:
         """
         args = self.__argparser.parse_args(args)
-        if 'func' in vars(args):
-            return args.func()
+        arg_dir = vars(args)
+        if 'func' in arg_dir:
+            del arg_dir['func']
+            return args.func(**arg_dir)
         else:
             return self.__argparser.format_help()
