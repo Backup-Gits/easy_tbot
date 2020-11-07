@@ -9,6 +9,7 @@ setup(
     packages=['easy_tbot', 'easy_tbot.db', 'easy_tbot.bot', 'easy_tbot.shell', 'easy_tbot.handlers',
               'easy_tbot.handlers.setup'],
     install_requires=['pyTelegramBotAPI>=3.7.3', 'SQLAlchemy>=1.3.19'],
+    entry_points={'console_scripts': ['tbot-admin=easy_tbot.tbot_admin:main'], },
     url='',
     license='GNU LESSER GENERAL PUBLIC LICENSE',
     author='Jesús Enrique Fuentes González',

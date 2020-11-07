@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+import argparse
 
 files_and_content = [('settings.py', """import os
 
@@ -16,7 +17,7 @@ DB = {
 TOKEN = ''
 PROXY = {}
 """),
-                     ('botmanager.py',"""import os
+                     ('botmanager.py', """import os
 from bot_framework.shell.loader import handle_shell_input
 
 import sys
@@ -39,5 +40,11 @@ def create_project(project_name):
     else:
         os.mkdir(full_pn)
         for fal in files_and_content:
-            with open(os.path.join(full_pn,fal[0]),'w') as fs:
+            with open(os.path.join(full_pn, fal[0]), 'w') as fs:
                 fs.write(fal[1])
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('name', help='Project name')
+    print(parser.parse_args())
