@@ -19,7 +19,7 @@ PROXY = {}
 DEBUG = True
 """),
                      ('botmanager.py', """import os
-from bot_framework.shell.loader import handle_shell_input
+from easy_tbot.shell.loader import handle_shell_input
 
 import sys
 

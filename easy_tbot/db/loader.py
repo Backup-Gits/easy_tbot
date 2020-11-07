@@ -14,7 +14,7 @@ def load_dbengine():
     :return: Base (db engine clase of sqlalchemy package).
     """
     settings = load_settings()
-    return create_engine(f"{settings.DB['engine']}://{settings.DB['name']}")
+    return create_engine(settings.DB)
 
 
 @Cached

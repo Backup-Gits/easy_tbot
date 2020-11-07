@@ -38,7 +38,7 @@ def for_app_do(func: Callable):
     :return: None
     """
     settings = load_settings()
-    apps = set(settings.GLOBALS + settings.SECTIONS)
+    apps = set(settings.SECTIONS)
 
     for app in apps:
         try:

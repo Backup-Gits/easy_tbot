@@ -14,7 +14,7 @@ setup(
     license='GNU LESSER GENERAL PUBLIC LICENSE',
     author='Jesús Enrique Fuentes González',
     author_email='jesusefg12@gmail.com',
-    description='Framework  for data base and other usefull stuff integration with Telegram bot api',
+    description='Mini framework  for data base and other usefull stuff integration with Telegram bot api',
     long_description=description,
     long_description_content_type="text/markdown",
     python_requires='>=3.6',

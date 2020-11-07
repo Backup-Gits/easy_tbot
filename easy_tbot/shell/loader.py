@@ -54,16 +54,16 @@ class CreateApp(ShellCommand):
         'help': 'Create a well formed section directory'
     }
     files_and_lines = [('__init__.py',),
-                       ('handlers.py', 'from bot_framework.handlers.handler import Command', '',
+                       ('handlers.py', 'from easy_tbot.handlers.handler import Command', '',
                         '# Code your handler system here'),
-                       ('inlines.py', 'from bot_framework.handlers.inline import InlineHandler', '',
+                       ('inlines.py', 'from easy_tbot.handlers.inline import InlineHandler', '',
                         '# Code your inline '
                         'system here'),
-                       ('middlewares.py', 'from bot_framework.handlers.middleware import Middleware', '',
+                       ('middlewares.py', 'from easy_tbot.handlers.middleware import Middleware', '',
                         '# Code your middleware system  here'),
-                       ('models.py', 'from bot_framework.db.models import Model', 'from sqlalchemy import Column',
+                       ('models.py', 'from easy_tbot.db.models import Model', 'from sqlalchemy import Column',
                         '', "# Code your model's here"),
-                       ('shells.py', 'from bot_framework.shell.shell import ShellCommand', '',
+                       ('shells.py', 'from easy_tbot.shell.shell import ShellCommand', '',
                         '# Code your shell command here')]
 
     def do(self, *args, **kwargs):
