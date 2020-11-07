@@ -9,7 +9,7 @@ BASEDIR = os.path.dirname(__file__)
 SECTIONS = []
 GLOBALS = []
 
-DB = ''
+DB = 'sqlite:///sqlite.db'
 
 TOKEN = ''
 PROXY = {}
