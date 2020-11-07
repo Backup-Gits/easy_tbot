@@ -16,9 +16,7 @@ Here we hold all framework configuration stuff.
 | ------------- | ------------- |
 | BASEDIR  | Store the project direction  |
 | SECTIONS | Store wath sections must be loaded  |
-| DB | Store all database related configuration |
-| DB.name | Store the database name |
-| DB.engine | Store the engine for database (higly experimental right now just sqlite if tested) |
+| DB | sqlalchemy connection string |
 | TOKEN | The token provided by Telegram botfather for your bot |
 | PROXY | The proxy for connect with Telegram (MTPROTO not allowed ...!!yet!!) |
 | DEBUG | Control if framework can display debug information |
