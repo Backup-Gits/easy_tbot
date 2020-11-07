@@ -20,9 +20,13 @@ def get_logger():
     Get a logger for the framework
     :return: logger
     """
-    logger = logging.getLogger('BOT')
-    if load_settings().DEBUG:
+    settings = load_settings()
+
+    logger = logging.getLogger(os.path.basename(settings.BASEDIR))
+    if settings.DEBUG:
         logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.NOTSET)
     ch = logging.StreamHandler()
     fm = logging.Formatter('%(asctime)s (%(filename)s:%(lineno)d %(threadName)s) %(levelname)s - %(name)s: "%('
                            'message)s"')
