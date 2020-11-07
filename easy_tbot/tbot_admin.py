@@ -16,13 +16,12 @@ PROXY = {}
 DEBUG = True
 """),
                      ('botmanager.py', """import os
-from easy_tbot.shell.loader import handle_shell_input
-
 import sys
 
 
 def main():
     os.environ.setdefault('BOT_SETTING_MODULE', 'settings')
+    from easy_tbot.shell.loader import handle_shell_input
     handle_shell_input(*sys.argv[1:])
 
 
