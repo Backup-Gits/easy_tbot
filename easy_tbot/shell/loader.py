@@ -7,9 +7,9 @@ from easy_tbot.loader import for_app_do, get_logger
 from easy_tbot.utils import Cached
 
 from importlib import import_module
-import os
-import inspect
 from argparse import ArgumentParser
+import inspect
+import os
 
 
 class RunShellCommand(ShellCommand):
