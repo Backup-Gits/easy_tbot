@@ -6,7 +6,7 @@ setup(
     packages=['easy_tebot', 'easy_tebot.db', 'easy_tebot.bot', 'easy_tebot.shell', 'easy_tebot.handlers',
               'easy_tebot.handlers.setup'],
     url='',
-    license='',
+    license='GNU LGPLv3',
     author='Jesús Enrique Fuentes González',
     author_email='jesusefg12@gmail.com',
     description='Framework  for data base and other usefull stuff with Telegram bot api'
