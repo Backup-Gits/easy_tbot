@@ -10,7 +10,7 @@ class InlineHandler(HandlerSetup, ABC):
     @abstractmethod
     def filter(self, query: InlineQuery):
         """
-       Filter a query and return trun if this pass the test or false if not
+       Filter a query and return true if this pass the test or false if not
        :param query: Query to filter
        :return: True or false
         """
