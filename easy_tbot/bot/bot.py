@@ -11,6 +11,7 @@ class Bot(TeleBot):
     """
     API's main class. Representation of a Telegram's bot.
     """
+
     def __init__(self, *args, **kwargs):
         """
         :param args: Must have at least a token.
@@ -62,8 +63,7 @@ class Bot(TeleBot):
         :param args: Tuple of any handler class that extends of 'easy_tbot.handlers.setup.handlersetup.HandlerSetup'.
         :return: A generator of instantiated subscriptions of args.
         """
-        for x in args:
-            yield self.subscribe(x)
+        return [self.subscribe(x) for x in args]
 
     @with_triggers
     def setup(self):
