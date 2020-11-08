@@ -131,7 +131,7 @@ python botmanager.py hello
 These are the most demanded stuff for our mini framework and we want to do all of this:
 
 - [ ] Not only pyTelegramBotAPI as backend but telethon too
-- [x] Support for commobly used data bases
+- [x] Support for commonly used data bases
 - [ ] Support for mtproto proxy protocol
 - [ ] A session system
 - [ ] A user system
