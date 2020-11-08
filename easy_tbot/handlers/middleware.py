@@ -1,4 +1,5 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
+from easy_tbot.utils import Issolate
 from abc import ABC, abstractmethod
 from telebot import TeleBot
 from telebot.types import Message
@@ -25,9 +26,6 @@ class Middleware(HandlerSetup, ABC):
         """
         pass
 
-    def _issolated_function_(self) -> typing.Callable:
-        return None
-
     def setup(self):
-        self.bot.middleware_handler(update_types=[ut.value for ut in self.update_types])
+        self.bot.middleware_handler(update_types=[ut.value for ut in self.update_types])(Issolate(self.middleware))
         super(Middleware, self).setup()

@@ -24,12 +24,8 @@ class BaseHandler(HandlerSetup, ABC):
     def _get_setup_kwargs_(self) -> dict:
         pass
 
-    @property
-    def _issolated_function_(self) -> typing.Callable:
-        return Issolate(self.handle)
-
     def setup(self):
-        self.bot.message_handler(**self._get_setup_kwargs_)(self._issolated_function_)
+        self.bot.message_handler(**self._get_setup_kwargs_)(Issolate(self.handle))
         super(BaseHandler, self).setup()
 
 

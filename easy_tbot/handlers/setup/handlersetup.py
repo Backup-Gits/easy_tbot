@@ -32,13 +32,6 @@ class HandlerSetup(ABC):
         """
         return self.__bot
 
-    @property
-    @abstractmethod
-    def _issolated_function_(self) -> Callable:
-        """
-        Issolate the inner function for decoration purpose
-        """
-        pass
 
     def setup(self):
         """

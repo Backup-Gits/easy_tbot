@@ -28,10 +28,6 @@ class InlineHandler(HandlerSetup, ABC):
         """
         pass
 
-    @property
-    def _issolated_function_(self) -> Callable:
-        return Issolate(self.inline)
-
     def setup(self):
-        self.bot.inline_handler(Issolate(self.filter))(self._issolated_function_)
+        self.bot.inline_handler(Issolate(self.filter))(Issolate(Issolate(self.inline)))
         super(InlineHandler, self).setup()
