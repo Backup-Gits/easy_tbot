@@ -5,13 +5,18 @@ import argparse
 files_and_content = [('settings.py', """import os
 
 BASEDIR = os.path.dirname(__file__)
+TOKEN = ''
 
 SECTIONS = []
 GLOBALS = []
 
 DB = 'sqlite:///sqlite.db'
 
-TOKEN = ''
+TEMPLATES = {
+    'DIR':os.path.join(BASEDIR,'templates'),
+    'AUTOESCAPE': [txt,xml,html]
+}
+
 PROXY = {}
 DEBUG = True
 """),
@@ -36,6 +41,7 @@ def create_project(project_name):
         return 'A folder with that name already exist'
     else:
         os.mkdir(full_pn)
+        os.mkdir(os.path.join(full_pn, 'templates'))
         for fal in files_and_content:
             with open(os.path.join(full_pn, fal[0]), 'w') as fs:
                 fs.write(fal[1])
