@@ -67,8 +67,10 @@ def load_bot() -> Bot:
     def handle_app(app):
         for name, cast_type in [('middlewares', middleware.Middleware), ('handlers', handler.BaseHandler),
                                 ('inlines', inline.InlineHandler)]:
-            easy_subscribe(f'{app}.{name}', cast_type, bot)
-
+            try:
+                easy_subscribe(f'{app}.{name}', cast_type, bot)
+            except (ImportError, TypeError):
+                logger.warn(f"Can't find {name} file in {app}")
     for_app_do(handle_app)
     bot.setup()
     return bot
