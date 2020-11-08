@@ -13,8 +13,8 @@ GLOBALS = []
 DB = 'sqlite:///sqlite.db'
 
 TEMPLATES = {
-    'DIR':os.path.join(BASEDIR,'templates'),
-    'AUTOESCAPE': [txt,xml,html]
+    'DIR':os.path.join(BASEDIR, 'templates'),
+    'AUTOESCAPE': ['txt', 'xml', 'html']
 }
 
 PROXY = {}
