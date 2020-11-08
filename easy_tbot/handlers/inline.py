@@ -1,12 +1,15 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
+from easy_tbot.utils import Issolate
 from abc import ABC, abstractmethod
 from telebot.types import InlineQuery
+from typing import Callable
 
 
 class InlineHandler(HandlerSetup, ABC):
     """
     Base class for a inline handlers.
     """
+
     @abstractmethod
     def filter(self, query: InlineQuery):
         """
@@ -25,6 +28,10 @@ class InlineHandler(HandlerSetup, ABC):
         """
         pass
 
+    @property
+    def _issolated_function_(self) -> Callable:
+        return Issolate(self.inline)
+
     def setup(self):
-        self.bot.inline_handler(self.filter)(self.inline)
+        self.bot.inline_handler(Issolate(self.filter))(self._issolated_function_)
         super(InlineHandler, self).setup()

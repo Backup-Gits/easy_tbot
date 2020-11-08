@@ -1,6 +1,8 @@
+# noinspection PyPackageRequirements
 from telebot import TeleBot
 from easy_tbot.handlers.setup import handlersetup
 from easy_tbot.utils import with_triggers
+# noinspection PyPackageRequirements
 from telebot import apihelper, logger
 import logging
 
@@ -15,11 +17,12 @@ class Bot(TeleBot):
         :param kwargs:
         """
         debug = False
-        if 'debug' in kwargs and kwargs['debug']:
+        if 'debug' in kwargs:
             debug = kwargs['debug']
             del kwargs['debug']
 
         super(Bot, self).__init__(*args, **kwargs)
+
         if debug:
             logger.setLevel(logging.DEBUG)
         self.__subscriptions = []

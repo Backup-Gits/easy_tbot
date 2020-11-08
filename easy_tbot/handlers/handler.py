@@ -1,6 +1,6 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
+from easy_tbot.utils import Issolate
 from abc import ABC, abstractmethod
-
 from telebot.types import Message
 import typing
 
@@ -9,6 +9,7 @@ class BaseHandler(HandlerSetup, ABC):
     """
     Base class for a basic handlers.
     """
+
     @abstractmethod
     def handle(self, msg: Message):
         """
@@ -18,14 +19,28 @@ class BaseHandler(HandlerSetup, ABC):
         """
         pass
 
+    @property
+    @abstractmethod
+    def _get_setup_kwargs_(self) -> dict:
+        pass
+
+    @property
+    def _issolated_function_(self) -> typing.Callable:
+        return Issolate(self.handle)
+
+    def setup(self):
+        self.bot.message_handler(**self._get_setup_kwargs_)(self._issolated_function_)
+        super(BaseHandler, self).setup()
+
 
 class All(BaseHandler, ABC):
     """
     Handles all incoming mesagges
     """
-    def setup(self):
-        self.bot.message_handler(func=lambda x: True)(self.handle)
-        super(All, self).setup()
+
+    @property
+    def _get_setup_kwargs_(self) -> dict:
+        return {'func': lambda x: True}
 
 
 class Command(BaseHandler, ABC):
@@ -34,9 +49,9 @@ class Command(BaseHandler, ABC):
      """
     commands: typing.List[str]
 
-    def setup(self):
-        self.bot.message_handler(commands=self.commands)(self.handle)
-        super(Command, self).setup()
+    @property
+    def _get_setup_kwargs_(self) -> dict:
+        return {'commands': self.commands}
 
 
 class Regex(BaseHandler, ABC):
@@ -45,15 +60,16 @@ class Regex(BaseHandler, ABC):
      """
     regex: str
 
-    def setup(self):
-        self.bot.message_handler(regexp=self.regex)(self.handle)
-        super(Regex, self).setup()
+    @property
+    def _get_setup_kwargs_(self) -> dict:
+        return {'regexp': self.regex}
 
 
 class Function(BaseHandler, ABC):
     """
      Handles all incoming mesagges that pass through a filter function
      """
+
     @abstractmethod
     def filter(self, msg: Message) -> bool:
         """
@@ -63,6 +79,6 @@ class Function(BaseHandler, ABC):
         """
         pass
 
-    def setup(self):
-        self.bot.message_handler(func=self.filter)(self.handle)
-        super(Function, self).setup()
+    @property
+    def _get_setup_kwargs_(self) -> dict:
+        return {'func': Issolate(self.filter)}

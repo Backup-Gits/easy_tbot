@@ -1,5 +1,5 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
-from abc import ABC,abstractmethod
+from abc import ABC, abstractmethod
 from telebot import TeleBot
 from telebot.types import Message
 from enum import Enum
@@ -24,6 +24,9 @@ class Middleware(HandlerSetup, ABC):
         :param msg: The message to modify
         """
         pass
+
+    def _issolated_function_(self) -> typing.Callable:
+        return None
 
     def setup(self):
         self.bot.middleware_handler(update_types=[ut.value for ut in self.update_types])

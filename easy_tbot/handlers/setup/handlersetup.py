@@ -1,5 +1,6 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from telebot import TeleBot
+from typing import Callable
 
 
 class HandlerSetup(ABC):
@@ -30,6 +31,14 @@ class HandlerSetup(ABC):
         :return: Bot, inner bot
         """
         return self.__bot
+
+    @property
+    @abstractmethod
+    def _issolated_function_(self) -> Callable:
+        """
+        Issolate the inner function for decoration purpose
+        """
+        pass
 
     def setup(self):
         """

@@ -126,3 +126,6 @@ dmypy.json
 
 #pycharm
 .idea/
+
+#test
+/tests
