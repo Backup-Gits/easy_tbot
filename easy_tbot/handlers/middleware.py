@@ -7,7 +7,7 @@ import typing
 
 
 class UpdateType(Enum):
-    pass
+    pass  # TODO: update this
 
 
 class Middleware(HandlerSetup, ABC):
