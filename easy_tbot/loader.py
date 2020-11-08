@@ -1,8 +1,9 @@
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from importlib import import_module
-import logging
-import os
 from typing import Callable
 from .utils import Cached
+import logging
+import os
 
 
 @Cached
@@ -51,3 +52,11 @@ def for_app_do(func: Callable):
             get_logger().warn(f"Failed to load: {e}")
         except Exception as e:
             get_logger().error(f'Exeption {e}')
+
+
+@Cached
+def load_jinja_env():
+    templates = load_settings().TEMPLATES
+    loader = FileSystemLoader(templates['DIR'])
+    autoescape = select_autoescape(templates['AUTOESCAPE'])
+    return Environment(loader=loader, autoescape=autoescape)
