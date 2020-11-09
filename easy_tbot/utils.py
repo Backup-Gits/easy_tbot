@@ -20,73 +20,58 @@ class Cached:
         return self.__func(*args, **kwargs)
 
 
-class Issolate(object):
-    """
-    Issolate a function class as a objetc for support of functions decorators
-    """
+class method_decorator(object):
 
-    def __init__(self, func):
-        """
+    def __init__(self, func, obj=None, cls=None, method_type='function'):
+        # These defaults are OK for plain functions
+        # and will be changed by __get__() for methods once a method is dot-referenced.
+        self.func, self.obj, self.cls, self.method_type = func, obj, cls, method_type
 
-        :param func: Function decorated, converted in a trigger holder
-        """
-        self.__self__ = None  # "__self__" is also used by bound methods
+    def __get__(self, obj=None, cls=None):
+        # It is executed when decorated func is referenced as a method: cls.func or obj.func.
 
-        self._wrapped_ = func
-        functools.update_wrapper(self, func)
+        if self.obj == obj and self.cls == cls:
+            return self  # Use the same instance that is already processed by previous call to this __get__().
+
+        method_type = (
+            'staticmethod' if isinstance(self.func, staticmethod) else
+            'classmethod' if isinstance(self.func, classmethod) else
+            'instancemethod'
+            # No branch for plain function - correct method_type for it is already set in __init__() defaults.
+        )
+
+        return object.__getattribute__(self, '__class__')(
+            # Use specialized method_decorator (or descendant) instance, don't change current instance attributes -
+            # it leads to conflicts.
+            self.func.__get__(obj, cls), obj, cls,
+            method_type)  # Use bound or unbound method with this underlying func.
 
     def __call__(self, *args, **kwargs):
-        # if bound to an object, pass it as the first argument
-        fixed_args = (self.__self__,) + args if self.__self__ is not None else args
+        return self.func(*args, **kwargs)
 
-        # == change the following line to make the decorator do something ==
-        return self._wrapped_(*fixed_args, **kwargs)
+    def __getattribute__(self, attr_name):  # Hiding traces of decoration.
+        if attr_name in ('__init__', '__get__', '__call__', '__getattribute__', 'func', 'obj', 'cls',
+                         'method_type'):  # Our known names. '__class__' is not included because is used only with
+            # explicit object.__getattribute__().
+            return object.__getattribute__(self, attr_name)  # Stopping recursion.
+        # All other attr_names, including auto-defined by system in self, are searched in decorated self.func,
+        # e.g.: __module__, __class__, __name__, __doc__, im_*, func_*, etc.
+        return getattr(self.func,
+                       attr_name)  # Raises correct AttributeError if name is not found in decorated self.func.
 
-    def __get__(self, instance, owner):
-        if instance is None:
-            return self
-
-        # create a bound copy
-        bound = copy(self)
-        bound.__self__ = instance
-
-        # update __doc__ and similar attributes
-        functools.update_wrapper(bound, self._wrapped_)
-
-        # add the bound instance to the object's dict so that
-        # __get__ won't be called a 2nd time
-        setattr(instance, self._wrapped_.__name__, bound)
-
-        return bound
+    def __repr__(self):  # Special case: __repr__ ignores __getattribute__.
+        return self.func.__repr__()
 
 
-class WithTriggers(Issolate):
+class with_triggers(method_decorator):
     """
     Create a pre and post invocation trigger for a function
     """
 
     def __init__(self, func):
-        super(WithTriggers, self).__init__(func)
+        super(with_triggers, self).__init__(func)
 
-        self.__pre_func: Callable = None
         self.__post_func: Callable = None
-
-    @property
-    def pre_func(self):
-        """
-        Get function that trigger before main invocation
-        :return: Callable
-        """
-        return self.__pre_func
-
-    @pre_func.setter
-    def pre_func(self, value):
-        """
-        Set function that trigger before main invocation
-        :param value:  Function that trigger before main invocation
-        :return: None
-        """
-        self.__pre_func = value
 
     @property
     def post_func(self):
@@ -105,14 +90,7 @@ class WithTriggers(Issolate):
         self.__post_func = value
 
     def __call__(self, *args, **kwargs):
-        if self.__pre_func is not None:
-            self.__pre_func(*args, **kwargs)
-        results = super(WithTriggers, self).__call__(*args, **kwargs)
+        results = super(with_triggers, self).__call__(*args, **kwargs)
         if self.__post_func is not None:
             self.__post_func(*args, **kwargs)
         return results
-
-
-def with_triggers(f):
-    """Easy decorator, just a thing nice to see and code for PE8 conventions (non capitalized and other stuff)"""
-    return WithTriggers(f)

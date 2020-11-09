@@ -1,5 +1,5 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
-from easy_tbot.utils import Issolate
+from easy_tbot.utils import method_decorator
 from abc import ABC, abstractmethod
 from telebot.types import InlineQuery
 from typing import Callable
@@ -29,5 +29,5 @@ class InlineHandler(HandlerSetup, ABC):
         pass
 
     def setup(self):
-        self.bot.inline_handler(Issolate(self.filter))(Issolate(Issolate(self.inline)))
+        self.bot.inline_handler(method_decorator(self.filter))(method_decorator(method_decorator(self.inline)))
         super(InlineHandler, self).setup()

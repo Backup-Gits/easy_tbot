@@ -1,5 +1,5 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
-from easy_tbot.utils import Issolate
+from easy_tbot.utils import method_decorator
 from abc import ABC, abstractmethod
 from telebot.types import Message
 import typing
@@ -25,7 +25,7 @@ class BaseHandler(HandlerSetup, ABC):
         pass
 
     def setup(self):
-        self.bot.message_handler(**self._get_setup_kwargs_)(Issolate(self.handle))
+        self.bot.message_handler(**self._get_setup_kwargs_)(method_decorator(self.handle))
         super(BaseHandler, self).setup()
 
 
@@ -77,4 +77,4 @@ class Function(BaseHandler, ABC):
 
     @property
     def _get_setup_kwargs_(self) -> dict:
-        return {'func': Issolate(self.filter)}
+        return {'func': method_decorator(self.filter)}
