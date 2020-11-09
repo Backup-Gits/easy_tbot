@@ -1,7 +1,7 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
 from easy_tbot.utils import Issolate
 from abc import ABC, abstractmethod
-from telebot import TeleBot
+from easy_tbot.bot.bot import Bot
 from telebot.types import Message
 from enum import Enum
 import typing
@@ -27,7 +27,7 @@ class Middleware(HandlerSetup, ABC):
     update_types: typing.List[UpdateType] = [UpdateType.MESSAGE]
 
     @abstractmethod
-    def middleware(self, bot: TeleBot, msg: Message):
+    def middleware(self, bot: Bot, msg: Message):
         """
         Add, modify or delete a message info before any handler get it
         :param bot: The bot handling all the stuff

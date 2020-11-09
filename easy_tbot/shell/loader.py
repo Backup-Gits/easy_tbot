@@ -103,7 +103,7 @@ def load_shell():
             if issubclass(command[1], ShellCommand) and \
                     not inspect.isabstract(command[1]) and \
                     command[1] is not ShellCommand:
-                shell.add_command(command[1])
+                shell.add_command(command[1]())
 
     for_app_do(handle_app)
     return shell
