@@ -21,7 +21,7 @@ class Bot(TeleBot):
         if 'debug' in kwargs:
             debug = kwargs['debug']
             del kwargs['debug']
-
+        apihelper.ENABLE_MIDDLEWARE = True
         super(Bot, self).__init__(*args, **kwargs)
 
         if debug:
