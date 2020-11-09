@@ -1,6 +1,5 @@
 import argparse
 from abc import ABC, abstractmethod
-from easy_tbot.utils import with_triggers
 
 
 class ShellCommand(ABC):
@@ -42,7 +41,6 @@ class ShellHandler:
         self.__subparser = self.__argparser.add_subparsers()
         self.__parsers = []
 
-    @with_triggers
     def add_command(self, command: ShellCommand):
         """
         Adds a command to the handler

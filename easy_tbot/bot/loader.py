@@ -62,7 +62,6 @@ def load_bot() -> Bot:
     if settings.PROXY is not None and len(settings.PROXY) > 0:
         bot.proxy = settings.PROXY
     get_logger().info('Successfully created bot')
-    bot.subscribe.post_func = lambda k: get_logger().info(f' Successfully subscribed {k.__name__}')
 
     def handle_app(app):
         for name, cast_type in [('middlewares', middleware.Middleware), ('handlers', handler.BaseHandler),

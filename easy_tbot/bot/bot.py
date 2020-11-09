@@ -1,7 +1,6 @@
 # noinspection PyPackageRequirements
 from telebot import TeleBot
 from easy_tbot.handlers.setup import handlersetup
-from easy_tbot.utils import with_triggers
 # noinspection PyPackageRequirements
 from telebot import apihelper, logger
 import logging
@@ -44,7 +43,6 @@ class Bot(TeleBot):
         """
         apihelper.proxy = value
 
-    @with_triggers
     def subscribe(self, k):
         """
         Subscribes a class k as a handler or middleware in the bot.
@@ -65,7 +63,6 @@ class Bot(TeleBot):
         """
         return [self.subscribe(x) for x in args]
 
-    @with_triggers
     def setup(self):
         """
         Sets every class loaded in the bot, this is the real magic.

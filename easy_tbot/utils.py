@@ -61,36 +61,3 @@ class method_decorator(object):
 
     def __repr__(self):  # Special case: __repr__ ignores __getattribute__.
         return self.func.__repr__()
-
-
-class with_triggers(method_decorator):
-    """
-    Create a pre and post invocation trigger for a function
-    """
-
-    def __init__(self, func):
-        super(with_triggers, self).__init__(func)
-
-        self.__post_func: Callable = None
-
-    @property
-    def post_func(self):
-        """
-        Get function that trigger after main invocation
-        :return: Callable
-        """
-        return self.__post_func
-
-    @post_func.setter
-    def post_func(self, value):
-        """
-        Get function that trigger after main invocation
-        :return: Callable
-        """
-        self.__post_func = value
-
-    def __call__(self, *args, **kwargs):
-        results = super(with_triggers, self).__call__(*args, **kwargs)
-        if self.__post_func is not None:
-            self.__post_func(*args, **kwargs)
-        return results

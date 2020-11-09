@@ -94,7 +94,6 @@ def load_shell():
     :return: ShellHandler
     """
     shell = ShellHandler()
-    shell.add_command.post_func = lambda c: get_logger().info(f'Successfully created {c.name} command')
     shell.add_commands(MigrateShellCommand(), RunShellCommand(), CreateApp())
 
     def handle_app(app):
