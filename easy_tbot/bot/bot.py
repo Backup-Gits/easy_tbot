@@ -51,6 +51,9 @@ class Bot(TeleBot):
         """
         if not issubclass(k, handlersetup.HandlerSetup):
             raise ValueError(f'{k.__name__} is not a HandlerSetup child')
+        for x in self.__subscriptions:
+            if type(x) == k:
+                return x
         instance = k(self)
         self.__subscriptions.append(instance)
         return instance

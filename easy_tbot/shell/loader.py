@@ -53,6 +53,7 @@ class CreateApp(ShellCommand):
     extra = {
         'help': 'Create a well formed section directory'
     }
+    #TODO fix all this shet
     files_and_lines = [('__init__.py',),
                        ('handlers.py', 'from easy_tbot.handlers.handler import Command', '',
                         '# Code your handler system here'),

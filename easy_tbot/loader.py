@@ -43,11 +43,10 @@ def for_app_do(func: Callable):
     :return: None
     """
     settings = load_settings()
-    apps = set(settings.SECTIONS)
 
-    for app in apps:
+    for app in settings.SECTIONS:
         try:
-            return func(app)
+            func(app)
         except ImportError as e:
             get_logger().warn(f"Failed to load: {e}")
         except Exception as e:

@@ -44,13 +44,13 @@ def migrate():
     model = get_model()
 
     def handle_app(app):
+        get_logger().info(f'Analysing {app}')
         app_module = import_module(f'{app}.models')
         for table in inspect.getmembers(app_module, inspect.isclass):
-            if issubclass(table[1], model) and table[1] is not model:
+            if issubclass(table[1], model) and table[1] is not model and table[1].__table__ not in subcriptions:
                 subcriptions.append(table[1].__table__)
                 get_logger().info(f'Successfully analyzed {table[0]}')
 
     for_app_do(handle_app)
-
     model.metadata.create_all(load_dbengine(), tables=subcriptions)
     return subcriptions

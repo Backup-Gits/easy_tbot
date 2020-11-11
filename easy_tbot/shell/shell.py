@@ -36,10 +36,12 @@ class ShellHandler:
     """
     Handles all commands and stuff of every base or created section in the bot
     """
+
     def __init__(self):
         self.__argparser = argparse.ArgumentParser()
         self.__subparser = self.__argparser.add_subparsers()
         self.__parsers = []
+        self._subscriptions = []
 
     def add_command(self, command: ShellCommand):
         """
@@ -47,6 +49,9 @@ class ShellHandler:
         :param command: Command to add
         :return: None
         """
+        if type(command) not in self._subscriptions:
+            self._subscriptions.append(type(command))
+
         parser = self.__subparser.add_parser(command.name, **command.extra)
         parser.set_defaults(func=command.do)
         self.__parsers.append(parser)
