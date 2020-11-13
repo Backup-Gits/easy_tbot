@@ -11,8 +11,8 @@ import typing
 class UpdateType(Enum):
     MESSAGE = 'message'
     EDITED_MESSAGE = 'edited_message'
-    CHANEL_POST = 'channel_post'
-    EDITED_CHANEL_POST = 'edited_channel_post'
+    CHANNEL_POST = 'channel_post'
+    EDITED_CHANNEL_POST = 'edited_channel_post'
     INLINE_QUERY = 'inline_query'
     CHOSEN_INLINE_RESULT = 'chosen_inline_result'
     CALLBACK_QUERY = 'callback_query'
