@@ -11,7 +11,7 @@ class InlineHandler(HandlerSetup, ABC):
     """
 
     @abstractmethod
-    def filter(self, query: InlineQuery):
+    def inline_filter(self, query: InlineQuery):
         """
        Filter a query and return true if this pass the test or false if not
        :param query: Query to filter
@@ -29,5 +29,5 @@ class InlineHandler(HandlerSetup, ABC):
         pass
 
     def setup(self):
-        self.bot.inline_handler(method_decorator(self.filter))(method_decorator(method_decorator(self.inline)))
+        self.bot.inline_handler(method_decorator(self.inline_filter))(method_decorator(method_decorator(self.inline)))
         super(InlineHandler, self).setup()
