@@ -127,15 +127,3 @@ This command can be used now with botmanager.py
 ```commandline
 python botmanager.py hello
 ```
-## To do stuff
-These are the most demanded stuff for our mini framework and we want to do all of this:
-
-- [ ] Not only pyTelegramBotAPI as backend but telethon too
-- [x] Support for commobly used data bases
-- [ ] Support for mtproto proxy protocol
-- [ ] A session system
-- [ ] A user system
-- [ ] A permission  system
-- [ ] A markup on the fly system
-- [ ] Support for webhooks
-- [ ] Unit Tests 👀

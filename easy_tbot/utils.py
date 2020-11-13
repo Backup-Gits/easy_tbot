@@ -6,12 +6,12 @@ from copy import copy
 
 class Cached:
     """
-    Decorator object, for cachin and some lazy initialization
+    Decorator object, for catching and some lazy initialization
     """
 
     def __init__(self, func):
         """
-        :param func; Function to cach and make lazy
+        :param func; Function to catch and make lazy
         """
         self.__func = func
 
@@ -20,6 +20,7 @@ class Cached:
         return self.__func(*args, **kwargs)
 
 
+# noinspection SpellCheckingInspection
 class method_decorator(object):
 
     def __init__(self, func, obj=None, cls=None, method_type='function'):

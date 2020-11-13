@@ -38,8 +38,8 @@ def get_logger():
 
 def for_app_do(func: Callable):
     """
-    A helpfull method that iterates for every app and applies a function to them
-    :param func: Funtion to aply
+    A helpful method that iterates for every app and applies a function to them
+    :param func: Function to apply
     :return: None
     """
     settings = load_settings()
@@ -50,12 +50,12 @@ def for_app_do(func: Callable):
         except ImportError as e:
             get_logger().warn(f"Failed to load: {e}")
         except Exception as e:
-            get_logger().error(f'Exeption {e}')
+            get_logger().error(f'Exception {e}')
 
 
 @Cached
 def load_jinja_env():
     templates = load_settings().TEMPLATES
     loader = FileSystemLoader(templates['DIR'])
-    autoescape = select_autoescape(templates['AUTOESCAPE'])
-    return Environment(loader=loader, autoescape=autoescape)
+    auto_scape = select_autoescape(templates['AUTO_SCAPE'])
+    return Environment(loader=loader, autoescape=auto_scape)

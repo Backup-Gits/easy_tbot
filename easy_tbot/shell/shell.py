@@ -38,8 +38,8 @@ class ShellHandler:
     """
 
     def __init__(self):
-        self.__argparser = argparse.ArgumentParser()
-        self.__subparser = self.__argparser.add_subparsers()
+        self.__parser = argparse.ArgumentParser()
+        self.__subparsers = self.__parser.add_subparsers()
         self.__parsers = []
         self._subscriptions = []
 
@@ -52,7 +52,7 @@ class ShellHandler:
         if type(command) not in self._subscriptions:
             self._subscriptions.append(type(command))
 
-        parser = self.__subparser.add_parser(command.name, **command.extra)
+        parser = self.__subparsers.add_parser(command.name, **command.extra)
         parser.set_defaults(func=command.do)
         self.__parsers.append(parser)
         command.post_insert(parser)
@@ -72,10 +72,10 @@ class ShellHandler:
         :param args:
         :return:
         """
-        args = vars(self.__argparser.parse_args(args))
+        args = vars(self.__parser.parse_args(args))
         if 'func' in args:
             func = args['func']
             del args['func']
             return func(**args)
         else:
-            return self.__argparser.format_help()
+            return self.__parser.format_help()
