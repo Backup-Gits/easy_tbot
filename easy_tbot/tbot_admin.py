@@ -13,7 +13,7 @@ DB = 'sqlite:///sqlite.db'
 
 TEMPLATES = {
     'DIR':os.path.join(BASEDIR, 'templates'),
-    'AUTOESCAPE': ['txt', 'md', 'html']
+    'AUTO_SCAPE': ['txt', 'md', 'html']
 }
 
 PROXY = {}
