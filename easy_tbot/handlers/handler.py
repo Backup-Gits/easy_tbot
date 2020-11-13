@@ -42,7 +42,7 @@ class All(BaseHandler, ABC):
 
 class Command(BaseHandler, ABC):
     """
-     Handles incoming mesagges asociated with a set of commands
+     Handles incoming messages associated with a set of commands
      """
     commands: typing.List[str]
 
@@ -53,7 +53,7 @@ class Command(BaseHandler, ABC):
 
 class Regex(BaseHandler, ABC):
     """
-     Handles incoming mesagges asociated with a regular expresion
+     Handles incoming messages associated with a regular expression
      """
     regex: str
 
@@ -64,7 +64,7 @@ class Regex(BaseHandler, ABC):
 
 class Function(BaseHandler, ABC):
     """
-     Handles all incoming mesagges that pass through a filter function
+     Handles all incoming messages that pass through a filter function
      """
 
     @abstractmethod
