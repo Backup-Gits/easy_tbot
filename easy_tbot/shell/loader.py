@@ -57,11 +57,11 @@ class CreateApp(ShellCommand):
 
     # noinspection SpellCheckingInspection
     files_and_lines = [('__init__.py', """"""),
-                       ('handlers.py', """from easy_tbot import Command, Message, session_scope, render"""),
-                       ('inlines.py', """from easy_tbot import InlineHandler, InlineQuery, session_scope"""),
-                       ('middlewares.py', """from easy_tbot import Middleware, Bot, Message, session_scope"""),
+                       ('handlers.py', """from easy_tbot import Command, render, types"""),
+                       ('inlines.py', """from easy_tbot import InlineHandler, session_scope, render, types"""),
+                       ('middlewares.py', """from easy_tbot import Middleware, Bot, session_scope, types"""),
                        ('models.py', """from easy_tbot import Model
-from easy_tbot.db import Column, Integer, String, ForeignKey, relationship"""),
+from easy_tbot.db import Column, Integer, String, Boolean, ForeignKey, relationship"""),
                        ('shells.py', """from easy_tbot import ShellCommand, session_scope""")]
 
     def do(self, *args, **kwargs):
