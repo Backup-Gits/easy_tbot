@@ -8,7 +8,7 @@ Session = get_session_class()
 @contextmanager
 def session_scope():
     """
-    A context for sections, for propely management of our section.
+    A context for sections, for properly management of our section.
     Example: with session_scope() as s: ...
     """
     session = Session()
