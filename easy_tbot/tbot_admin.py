@@ -8,13 +8,12 @@ BASEDIR = os.path.dirname(__file__)
 TOKEN = ''
 
 SECTIONS = []
-GLOBALS = []
 
 DB = 'sqlite:///sqlite.db'
 
 TEMPLATES = {
     'DIR':os.path.join(BASEDIR, 'templates'),
-    'AUTOESCAPE': ['txt', 'xml', 'html']
+    'AUTOESCAPE': ['txt', 'md', 'html']
 }
 
 PROXY = {}

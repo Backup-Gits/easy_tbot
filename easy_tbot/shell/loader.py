@@ -53,19 +53,14 @@ class CreateApp(ShellCommand):
     extra = {
         'help': 'Create a well formed section directory'
     }
-    #TODO fix all this shet
-    files_and_lines = [('__init__.py',),
-                       ('handlers.py', 'from easy_tbot.handlers.handler import Command', '',
-                        '# Code your handler system here'),
-                       ('inlines.py', 'from easy_tbot.handlers.inline import InlineHandler', '',
-                        '# Code your inline '
-                        'system here'),
-                       ('middlewares.py', 'from easy_tbot.handlers.middleware import Middleware', '',
-                        '# Code your middleware system  here'),
-                       ('models.py', 'from easy_tbot.db.models import Model', 'from sqlalchemy import Column',
-                        '', "# Code your model's here"),
-                       ('shells.py', 'from easy_tbot.shell.shell import ShellCommand', '',
-                        '# Code your shell command here')]
+
+    files_and_lines = [('__init__.py', """"""),
+                       ('handlers.py', """from easy_tbot import Command, Message, session_scope, render"""),
+                       ('inlines.py', """from easy_tbot import InlineHandler, InlineQuery, session_scope"""),
+                       ('middlewares.py', """from easy_tbot import Middleware, Bot, Message, session_scope"""),
+                       ('models.py', """from easy_tbot import Model
+from easy_tbot.db import Column, Integer, String, ForeignKey, relationship"""),
+                       ('shells.py', """from easy_tbot import ShellCommand, session_scope""")]
 
     def do(self, *args, **kwargs):
         section = None
@@ -80,9 +75,9 @@ class CreateApp(ShellCommand):
             os.mkdir(full_section_name)
             for fal in self.files_and_lines:
                 file = fal[0]
-                lines = fal[1:] if len(fal) > 1 else []
+                lines = fal[1]
                 with open(os.path.join(full_section_name, file), 'w') as fs:
-                    fs.writelines(lines)
+                    fs.write(lines)
 
     def post_insert(self, parser: ArgumentParser):
         parser.add_argument('name', help='Name for the section folder')
