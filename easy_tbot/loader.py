@@ -57,5 +57,5 @@ def for_app_do(func: Callable):
 def load_jinja_env():
     templates = load_settings().TEMPLATES
     loader = FileSystemLoader(templates['DIR'])
-    auto_scape = select_autoescape(templates['AUTO_SCAPE'])
-    return Environment(loader=loader, autoescape=auto_scape)
+    auto_escape = select_autoescape(templates['AUTO_ESCAPE'])
+    return Environment(loader=loader, autoescape=auto_escape)
