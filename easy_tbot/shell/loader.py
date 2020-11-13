@@ -49,11 +49,13 @@ class MigrateShellCommand(ShellCommand):
 
 
 class CreateApp(ShellCommand):
+    # noinspection SpellCheckingInspection
     name = 'createsection'
     extra = {
         'help': 'Create a well formed section directory'
     }
 
+    # noinspection SpellCheckingInspection
     files_and_lines = [('__init__.py', """"""),
                        ('handlers.py', """from easy_tbot import Command, Message, session_scope, render"""),
                        ('inlines.py', """from easy_tbot import InlineHandler, InlineQuery, session_scope"""),
