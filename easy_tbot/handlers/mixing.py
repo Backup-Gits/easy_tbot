@@ -4,7 +4,7 @@ import inspect
 
 class Mixing(HandlerSetup):
     """
-    TODO: document this
+    This class must be first inheritance in a handler class mixing
     """
     def setup(self):
         for cls in self.__class__.__mro__[2:]:
