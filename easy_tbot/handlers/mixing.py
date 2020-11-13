@@ -3,6 +3,9 @@ import inspect
 
 
 class Mixing(HandlerSetup):
+    """
+    TODO: document this
+    """
     def setup(self):
         for cls in self.__class__.__mro__[2:]:
             if hasattr(cls, 'setup') and not inspect.isabstract(cls):

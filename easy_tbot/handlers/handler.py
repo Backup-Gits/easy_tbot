@@ -1,7 +1,8 @@
 from easy_tbot.handlers.setup.handlersetup import HandlerSetup
 from easy_tbot.utils import method_decorator
 from abc import ABC, abstractmethod
-from telebot.types import Message
+# noinspection PyPackageRequirements
+from telebot import types
 import typing
 
 
@@ -11,7 +12,7 @@ class BaseHandler(HandlerSetup, ABC):
     """
 
     @abstractmethod
-    def handle(self, msg: Message):
+    def handle(self, msg: types.Message):
         """
         Handles some incoming message.
         :param msg: Message to handle.
@@ -67,7 +68,7 @@ class Function(BaseHandler, ABC):
      """
 
     @abstractmethod
-    def filter(self, msg: Message) -> bool:
+    def filter(self, msg: types.Message) -> bool:
         """
         Filters a message and returns true if it has passed the test or false if it has not
         :param msg: Message to filter

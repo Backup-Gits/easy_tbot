@@ -2,7 +2,8 @@ from easy_tbot.handlers.setup.handlersetup import HandlerSetup
 from easy_tbot.utils import method_decorator
 from abc import ABC, abstractmethod
 from easy_tbot.bot.bot import Bot
-from telebot.types import Message
+# noinspection PyPackageRequirements
+from telebot import types
 from enum import Enum
 import typing
 
@@ -27,7 +28,7 @@ class Middleware(HandlerSetup, ABC):
     update_types: typing.List[UpdateType] = [UpdateType.MESSAGE]
 
     @abstractmethod
-    def middleware(self, bot: Bot, msg: Message):
+    def middleware(self, bot: Bot, msg: types.Message):
         """
         Add, modify or delete a message info before any handler get it
         :param bot: The bot handling all the stuff
@@ -36,5 +37,6 @@ class Middleware(HandlerSetup, ABC):
         pass
 
     def setup(self):
-        self.bot.middleware_handler(update_types=[ut.value for ut in self.update_types])(method_decorator(self.middleware))
+        self.bot.middleware_handler(update_types=[ut.value for ut in self.update_types])(
+            method_decorator(self.middleware))
         super(Middleware, self).setup()
