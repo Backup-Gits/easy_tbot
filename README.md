@@ -131,7 +131,6 @@ class User(Model):
 #### Shells
 Represented by shells.py file. Stores a set of commands that inherit from ShellCommand class stored in
 easy_tbot.shell.shell
-An example of how to edit a message's info
 ```python
 from easy_tbot import  ShellCommand
 
