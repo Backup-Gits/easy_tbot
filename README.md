@@ -1,9 +1,15 @@
 # easy_tbot
-Mini framework for database and other usefull stuff integration with Telegram bot api
-## Instalation
+Mini framework for database and other useful stuff integration with Telegram bot api
+## Installation
 ````commandline
 pip install easy-tbot
 ````
+## How create a project?
+Once installed run the command.
+```commandline
+create-tbot bot_name
+```
+The command will create the structure for the projects explained below.
 ## Project structure
 - Project
   - Sections (a set of sections folders)
@@ -12,12 +18,14 @@ pip install easy-tbot
 ### The settings.py file
 Here we hold all framework configuration stuff.
 
-| Variable name | Wath they do |
+| Variable name | Wat they do |
 | ------------- | ------------- |
 | BASEDIR  | Stores the project direction  |
 | SECTIONS | Stores what sections must be loaded with |
 | DB | sqlalchemy connection string |
 | TOKEN | The token provided by Telegram botfather's bot for using your own bot |
+| TEMPLATES.DIR | Save the directory where the template engine should look |
+| TEMPLATES.AUTO_ESCAPE | Defines which file extensions it should read |
 | PROXY | The proxy for connect with Telegram (MTPROTO not allowed ...!!yet!!) |
 | DEBUG | Controls if the framework can display debug's information |
 ### The botmanager.py file 
@@ -52,12 +60,12 @@ easy_tbot.handlers.handler
 An example of a reply to the /start command
 ```python
 
-from easy_tbot.handlers.handler import Command,Message
+from easy_tbot import Command, types
 
 class StartCommand(Command):
     commands = ['start']
 
-    def handle(self, msg: Message):
+    def handle(self, msg: types.Message):
         self.bot.reply_to(msg, 'Hello world!!!')
 ```
 #### Inlines
@@ -65,26 +73,31 @@ Represented by inlines.py file. Stores a set of handlers that inherit from Inlin
 easy_tbot.handlers.inline
 An example of a reply made to the 'hello' inline button
 ```python
-from easy_tbot.handlers.inline import InlineHandler,InlineQuery
+from easy_tbot import  InlineHandler, types
 
 class HelloInline(InlineHandler):
-    def filter(self, query: InlineQuery):
+    def inline_filter(self, query: types.InlineQuery):
         return query.query == 'hello'
     
-    def inline(self, query: InlineQuery):
-            self.bot.send_message(query.id, 'Hello to you')
+    def inline(self, query: types.InlineQuery):
+        answer = types.InlineQueryResultArticle(1,'hola',types.InputTextMessageContent('hola'))
+        try:
+            self.bot.answer_inline_query(query.id,[answer])
+        except:
+            pass
+        
 ```
 #### Middlewares
 Represented by middlewares.py file. Stores a set of handlers that inherit from Middlware class stored in
 easy_tbot.handlers.middleware
 An example of how to edit a message's info
 ```python
-from easy_tbot.handlers.middleware import Middleware,Message,TeleBot
+from easy_tbot.handlers.middleware import Middleware,types,Bot
 from .models import User
 
 class HelloMiddleware(Middleware):
 
-    def middleware(self, bot: TeleBot, msg: Message):
+    def middleware(self, bot: Bot, msg: types.Message):
         
         msg.register = User.get_user_from_db(msg.from_user.id) is not None
 ```
@@ -93,8 +106,10 @@ Represented by models.py file. Stores a set of ORM models that inherit from Mode
 easy_tbot.db.models
 An example off a user model
 ```python
-from easy_tbot.db.models import Model, session_scope
-from sqlalchemy import Column, String, Integer, Boolean
+from easy_tbot import Model , session_scope
+from easy_tbot.db import Column, Integer, String, Boolean
+
+
 class User(Model):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
@@ -116,7 +131,7 @@ Represented by shells.py file. Stores a set of commands that inherit from ShellC
 easy_tbot.shell.shell
 An example of how to edit a message's info
 ```python
-from easy_tbot.shell.shell import  ShellCommand
+from easy_tbot import  ShellCommand
 
 class HelloCommand(ShellCommand):
     name = 'hello'
