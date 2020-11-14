@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='easy_tbot',
-    version='1.0',
+    version='1.0.1b',
     packages=['easy_tbot', 'easy_tbot.db', 'easy_tbot.bot', 'easy_tbot.shell', 'easy_tbot.handlers',
               'easy_tbot.handlers.setup', 'easy_tbot.render'],
     install_requires=['pyTelegramBotAPI~=3.7.3', 'SQLAlchemy~=1.3.19'],
@@ -18,5 +18,10 @@ setup(
     long_description=description,
     long_description_content_type="text/markdown",
     python_requires='>=3.6',
-
+    classifiers=[
+        "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta",
+        "Framework :: Telegram",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)"
+    ]
 )
