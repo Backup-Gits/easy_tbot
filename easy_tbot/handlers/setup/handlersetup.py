@@ -1,6 +1,5 @@
-from abc import ABC, abstractmethod
-from easy_tbot.bot.bot import Bot
-from typing import Callable
+from abc import ABC
+from telebot import TeleBot as Bot
 
 
 class HandlerSetup(ABC):
