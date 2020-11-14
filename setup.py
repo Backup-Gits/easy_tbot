@@ -21,7 +21,6 @@ setup(
     classifiers=[
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
-        "Framework :: Telegram",
         "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)"
     ]
 )
