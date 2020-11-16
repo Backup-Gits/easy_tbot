@@ -57,8 +57,7 @@ Sections are logicall-separated parts of our bot. They are formed by handler, in
   - shells.py
   
 #### Handlers
-Represented by handlers.py file. Stores a set of handlers that inherit from All, Command, Regex, Function classes stored in
-easy_tbot.handlers.handler
+Represented by handlers.py file. Stores a set of handlers that inherit from All, Command, Regex, Function classes.
 An example of a reply to the /start command
 ```python
 
@@ -71,8 +70,7 @@ class StartCommand(Command):
         self.bot.reply_to(msg, 'Hello world!!!')
 ```
 #### Inlines
-Represented by inlines.py file. Stores a set of handlers that inherit from InlineHandler class stored in
-easy_tbot.handlers.inline
+Represented by inlines.py file. Stores a set of handlers that inherit from InlineHandler.
 An example of a reply made to the 'hello' inline button
 ```python
 from easy_tbot import  InlineHandler, types
@@ -90,8 +88,7 @@ class HelloInline(InlineHandler):
         
 ```
 #### Middlewares
-Represented by middlewares.py file. Stores a set of handlers that inherit from Middlware class stored in
-easy_tbot.handlers.middleware
+Represented by middlewares.py file. Stores a set of handlers that inherit from Middlware class.
 An example of how to edit a message's info
 ```python
 from easy_tbot.handlers.middleware import Middleware,types,Bot
@@ -104,8 +101,7 @@ class HelloMiddleware(Middleware):
         msg.register = User.get_user_from_db(msg.from_user.id) is not None
 ```
 #### Models
-Represented by models.py file. Stores a set of ORM models that inherit from Model class stored in
-easy_tbot.db.models
+Represented by models.py file. Stores a set of ORM models that inherit from Model.
 An example off a user model
 ```python
 from easy_tbot import Model , session_scope
@@ -129,8 +125,7 @@ class User(Model):
 
 ```
 #### Shells
-Represented by shells.py file. Stores a set of commands that inherit from ShellCommand class stored in
-easy_tbot.shell.shell
+Represented by shells.py file. Stores a set of commands that inherit from ShellCommand class.
 ```python
 from easy_tbot import  ShellCommand
 
@@ -143,5 +138,18 @@ This command can be used now with botmanager.py
 ```commandline
 python botmanager.py hello
 ```
+## Class Mixing
+Some times we make a bot with same logic for a set of user input, since easy_tbot use class systme for user logic representation.
+Mixing class functionality is in part easy.
+```python
+from easy_tbot import Mixing, Command, Regex, types
+
+class Hello(Mixing,Command,Regex):
+    commands = ['hello']
+    regex = r'hello'
+    def handle(self, msg: types.Message):
+        self.bot.reply_to(msg, 'Hello to you')
+```
 ## Thanks
 My thanks to [GowterZil](https://github.com/GowtherZil) a newborn of zen.
+

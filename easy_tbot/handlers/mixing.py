@@ -9,6 +9,7 @@ class Mixing(HandlerSetup):
     """
     This class must be first inheritance in a handler class mixing
     """
+
     def __init__(self, bot):
         super().__init__(bot)
         mro = self.__class__.__mro__
@@ -21,5 +22,5 @@ class Mixing(HandlerSetup):
 
     def setup(self):
         for cls in self.__class__.__mro__[2:]:
-            if issubclass(cls,HandlerSetup):
+            if issubclass(cls, HandlerSetup):
                 getattr(cls, 'setup')(self)
