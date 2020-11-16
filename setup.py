@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='easy_tbot',
-    version='1.0.2b',
+    version='1.0.2b1',
     packages=['easy_tbot', 'easy_tbot.db', 'easy_tbot.bot', 'easy_tbot.shell', 'easy_tbot.handlers',
               'easy_tbot.handlers.setup', 'easy_tbot.render'],
     install_requires=['pyTelegramBotAPI~=3.7.3', 'SQLAlchemy~=1.3.19'],
