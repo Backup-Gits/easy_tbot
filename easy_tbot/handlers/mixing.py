@@ -23,4 +23,11 @@ class Mixing(HandlerSetup):
     def setup(self):
         for cls in self.__class__.__mro__[2:]:
             if issubclass(cls, HandlerSetup):
-                getattr(cls, 'setup')(self)
+                kwargs = {}
+                if hasattr(cls, '_get_setup_kwargs_'):
+                    kwargs = getattr(cls, '_get_setup_kwargs_')(self)
+                # noinspection PyBroadException
+                try:
+                    getattr(cls, 'setup')(self, **kwargs)
+                except Exception:
+                    pass

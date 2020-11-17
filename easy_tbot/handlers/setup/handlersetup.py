@@ -31,7 +31,7 @@ class HandlerSetup(ABC):
         """
         return self.__bot
 
-    def setup(self):
+    def setup(self,*args, **kwargs):
         """
         Sets this handler in the proper bot
         :return: None

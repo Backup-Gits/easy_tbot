@@ -4,6 +4,7 @@ from easy_tbot.handlers.setup import handlersetup
 # noinspection PyPackageRequirements
 from telebot import apihelper, logger
 import logging
+from easy_tbot.handlers.mixing import Mixing
 
 
 class MetaSingleton(type):
@@ -60,9 +61,10 @@ class Bot(TeleBot, metaclass=MetaSingleton):
         """
         if not issubclass(k, handlersetup.HandlerSetup):
             raise ValueError(f'{k.__name__} is not a HandlerSetup child')
-        for x in self.__subscriptions:
-            if type(x) == k:
-                return x
+        if not issubclass(k, Mixing):
+            for x in self.__subscriptions:
+                if type(x) == k:
+                    return x
         instance = k(self)
         self.__subscriptions.append(instance)
         return instance

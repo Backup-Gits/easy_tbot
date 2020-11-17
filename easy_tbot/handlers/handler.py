@@ -20,22 +20,21 @@ class BaseHandler(HandlerSetup, ABC):
         """
         pass
 
-    @property
     @abstractmethod
     def _get_setup_kwargs_(self) -> dict:
         pass
 
-    def setup(self):
-        self.bot.message_handler(**self._get_setup_kwargs_)(method_decorator(self.handle))
+    def setup(self, *args, **kwargs):
+        k_args = self._get_setup_kwargs_() if len(kwargs) == 0 or kwargs is None else kwargs
+        self.bot.message_handler(**k_args)(method_decorator(self.handle))
         super(BaseHandler, self).setup()
 
 
 class All(BaseHandler, ABC):
     """
-    Handles all incoming mesagges
+    Handles all incoming messages
     """
 
-    @property
     def _get_setup_kwargs_(self) -> dict:
         return {'func': lambda x: True}
 
@@ -46,7 +45,6 @@ class Command(BaseHandler, ABC):
      """
     commands: typing.List[str]
 
-    @property
     def _get_setup_kwargs_(self) -> dict:
         return {'commands': self.commands}
 
@@ -57,7 +55,6 @@ class Regex(BaseHandler, ABC):
      """
     regex: str
 
-    @property
     def _get_setup_kwargs_(self) -> dict:
         return {'regexp': self.regex}
 
@@ -76,6 +73,5 @@ class Function(BaseHandler, ABC):
         """
         pass
 
-    @property
     def _get_setup_kwargs_(self) -> dict:
         return {'func': method_decorator(self.filter)}
