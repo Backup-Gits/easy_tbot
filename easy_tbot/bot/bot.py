@@ -6,7 +6,16 @@ from telebot import apihelper, logger
 import logging
 
 
-class Bot(TeleBot):
+class MetaSingleton(type):
+    __instances__ = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls.__instances__:
+            cls.__instances__[cls] = super(MetaSingleton, cls).__call__(*args, **kwargs)
+        return cls.__instances__[cls]
+
+
+class Bot(TeleBot, metaclass=MetaSingleton):
     """
     API's main class. Representation of a Telegram's bot.
     """
