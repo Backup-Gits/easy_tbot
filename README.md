@@ -24,7 +24,8 @@ Here we hold all framework configuration stuff.
 | ------------- | ------------- |
 | BASEDIR  | Stores the project direction  |
 | SECTIONS | Stores what sections must be loaded with |
-| DB | sqlalchemy connection string |
+| DB.NAME | Sqlalchemy connection string |
+| DB.EXTRA | Others args for sqlalchemy connection in dict form |
 | TOKEN | The token provided by Telegram botfather's bot for using your own bot |
 | TEMPLATES.DIR | Save the directory where the template engine should look |
 | TEMPLATES.AUTO_ESCAPE | Defines which file extensions it should read |
@@ -104,8 +105,7 @@ class HelloMiddleware(Middleware):
 Represented by models.py file. Stores a set of ORM models that inherit from Model.
 An example off a user model
 ```python
-from easy_tbot import Model , session_scope
-from easy_tbot.db import Column, Integer, String, Boolean
+from easy_tbot.db import Model, session_scope, Column, Integer, String, Boolean
 
 
 class User(Model):
@@ -150,6 +150,10 @@ class Hello(Mixing,Command,Regex):
     def handle(self, msg: types.Message):
         self.bot.reply_to(msg, 'Hello to you')
 ```
+
+## Release Notes
+If you migrate from version previous to v1.0.2b5, you must fixed import problems
+class like 'Model' and methods like 'session_scope' where movo from 'easy_tbot' to 'easy_tbot.db'
 ## Thanks
 My thanks to [GowterZil](https://github.com/GowtherZil) a newborn of zen.
 
