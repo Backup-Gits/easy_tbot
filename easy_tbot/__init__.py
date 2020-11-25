@@ -1,6 +1,5 @@
 from .bot.bot import Bot
 from telebot import types
-from .db.models import Model, Session, session_scope
 from .handlers.handler import Command, Regex, Function, All
 from .handlers.mixing import Mixing
 from .handlers.middleware import Middleware

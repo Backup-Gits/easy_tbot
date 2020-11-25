@@ -9,7 +9,7 @@ TOKEN = ''
 
 SECTIONS = []
 
-DB = {'NAME':'sqlite:///sqlite.db','EXTRA':{} }
+DB = {'NAME':'sqlite:///database.sql','EXTRA':{} }
 
 TEMPLATES = {
     'DIR':os.path.join(BASEDIR, 'templates'),
