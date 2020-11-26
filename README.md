@@ -152,8 +152,9 @@ class Hello(Mixing,Command,Regex):
 ```
 
 ## Release Notes
-If you migrate from version previous to v1.0.2b5, you must fixed import problems
-class like 'Model' and methods like 'session_scope' where movo from 'easy_tbot' to 'easy_tbot.db'
+If you migrate from version previous to v1.0.2b5, you must fixed import problems.
+Class like 'Model' and methods like 'session_scope' where move from 'easy_tbot' to 'easy_tbot.db'
+
 ## Thanks
 My thanks to [GowterZil](https://github.com/GowtherZil) a newborn of zen.
 
